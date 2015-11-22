@@ -8,14 +8,20 @@ cookielib
 ConfigParser
 
 
-使用方法
+a)python使用方法
 1、配置account.conf文件，写成自己的账号和密码
 2、登录：python seuLogin.py
 3、退出：python seuLogout.py
+
+b)window下使用方法
+1、配置account.conf文件，写成自己的账号和密码
+2、登录：seuLogin.exe
+3、退出：seuLogout.exe
 
 如遇到无法登录，可能是如下情况
 1、用户登录数超过上限
 2、流量超出
 3、未开通上网账号
+
 
 代码写的不完善的地方欢迎指正！（shipeng.alan@gmail.com）
