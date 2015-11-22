@@ -5,6 +5,7 @@ import urllib2
 import urllib
 import json
 import cookielib
+import ConfigParser
 
 
 class seuLogin(object):
@@ -115,6 +116,11 @@ class seuLogin(object):
             self.post()
 
 if __name__ == "__main__":
-    s = seuLogin("220151496", "200012shi")
+    cf = ConfigParser.ConfigParser()
+    cf.read("account.conf")
+    username = cf.get("account", "username")
+    password = cf.get("account", "password")
+    print username, password
+    s = seuLogin(username, password)
     # print s.postWithCookie()
     s.Login()
