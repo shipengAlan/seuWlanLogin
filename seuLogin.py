@@ -1,5 +1,6 @@
 #! /usr/bin/env python
 # coding : utf-8
+# Author:Shi Peng (shipeng.alan@gmail.com)
 import urllib2
 import urllib
 import json
@@ -31,12 +32,17 @@ class seuLogin(object):
             print state_info['error']
             return False
         else:
-            print 'Logint state:', state_info['success']
-            print 'Location:', state_info['login_location']
-            print 'Username:', state_info['login_username']
-            print 'IP:', state_info['login_ip']
-            print 'Index:', state_info['login_index']
-            return True
+            try:
+                print 'Logint state:', state_info['success']
+                print 'Location:', state_info['login_location']
+                print 'Username:', state_info['login_username']
+                print 'IP:', state_info['login_ip']
+                print 'Index:', state_info['login_index']
+                return True
+            except:
+                print "Sorry, error: please check your account's authority to login"
+                print "https://nic.seu.edu.cn"
+                return False
 
     def checkLogin(self):
         url = "https://w.seu.edu.cn/portal/init.php"
@@ -48,13 +54,19 @@ class seuLogin(object):
         if info_dict.has_key('notlogin'):
             return False
         else:
-            print 'Logint state:', "Have Logined"
-            print 'Location:', info_dict['login_location']
-            print 'Username:', info_dict['login_username']
-            print 'IP:', info_dict['login_ip']
-            print 'Index:', info_dict['login_index']
-            return True
+            try:
+                print 'Logint state:', "Have Logined"
+                print 'Location:', info_dict['login_location']
+                print 'Username:', info_dict['login_username']
+                print 'IP:', info_dict['login_ip']
+                print 'Index:', info_dict['login_index']
+                return True
+            except:
+                print "Sorry, error: please check your account's authority to login"
+                print "https://nic.seu.edu.cn"
+                return False
 
+    # no need cookie
     def postWithCookie(self):
         cookiefile = "cookiefile"
         url = "https://w.seu.edu.cn/portal/login.php"
