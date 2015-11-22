@@ -1,5 +1,13 @@
 # 本程序是为东南大学seu上网验证登录和登出的脚本，方便不用浏览器就可以联网（如ssh下）
 
+#python 依赖包
+urllib2
+urllib
+json
+cookielib
+ConfigParser
+
+
 使用方法
 1、配置account.conf文件，写成自己的账号和密码
 2、登录：python seuLogin.py
