@@ -4,6 +4,15 @@
 import urllib
 import json
 import ConfigParser
+from codecs import BOM_UTF8
+
+
+def lstrip_bom(str_, bom=BOM_UTF8):
+    # remove bom header
+    if str_.startswith(bom):
+        return str_[len(bom):]
+    else:
+        return str_
 
 
 class seuLogin(object):
@@ -20,7 +29,7 @@ class seuLogin(object):
         res = urllib.urlopen(url)
         info = res.read()
         # remove bom header
-        state_info = json.loads(info)
+        state_info = json.loads(lstrip_bom(info))
         if state_info['status'] == 1:
             return True
         else:
@@ -32,7 +41,7 @@ class seuLogin(object):
         res = urllib.urlopen(url)
         info = res.read()
         # remove bom header
-        state_info = json.loads(info)
+        state_info = json.loads(lstrip_bom(info))
         print 'Login info:', state_info['info']
         if state_info['status'] == 1:
             return True
@@ -48,6 +57,6 @@ if __name__ == "__main__":
     cf.read("account.conf")
     username = cf.get("account", "username")
     password = cf.get("account", "password")
-    print username, password
+    #print username, password
     s = seuLogin(username, password)
     s.Login()
